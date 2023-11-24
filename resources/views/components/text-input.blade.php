@@ -1,3 +1,22 @@
-@props(['disabled' => false])
+<div class="form-floating mb-3">
+    <input
+        class="form-control"
+        id="inputEmail"
+        type="{{ isset($type) ? $type : 'text' }}"
 
-<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm']) !!}>
+        @isset($name)
+        name="{{ $name }}"
+        value="{{ old($name) }}"
+        @endisset
+    />
+
+    @isset($label)
+        <label for="inputEmail">{{ $label }}</label>
+    @endisset
+
+    @isset($name)
+        @error($name)
+            <p class="text-danger">{{ $message }}</p>
+        @enderror
+    @endisset
+</div>
